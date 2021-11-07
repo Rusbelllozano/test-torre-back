@@ -9,15 +9,19 @@ app.get('/', (req, res) => {
 })
 app.get('/get_user/:customer', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    if(req.params.customer) {
-        var url = 'https://bio.torre.co/api/bios/'+req.params.customer;
+    if (req.params.customer) {
+        var url = 'https://bio.torre.co/api/bios/' + req.params.customer;
         request(url, function (error, response) {
             res.send(response.body)
-        }); 
+        });
     } else {
-        res.status(404).send('Type a username');
+        res.send({
+            status: 404,
+            message: 'Type a username'
+        }
+    );
     }
 })
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`)
 })
