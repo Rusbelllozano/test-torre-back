@@ -6,7 +6,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('API TEST TORRE')
 })
-app.get('get_user/:customer', (req, res) => {
+app.get('/get_user/:customer', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     var url = 'https://bio.torre.co/api/bios/'+req.params.customer;
     request(url, function (error, response) {
