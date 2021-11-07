@@ -8,17 +8,15 @@ app.get('/', (req, res) => {
 })
 app.get('/get_user/:customer', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    var url = 'https://bio.torre.co/api/bios/'+req.params.customer;
-    request(url, function (error, response) {
-        res.send(response.body)
-    });
-    console.log(res)    
+    if(req.params.customer.length) {
+        var url = 'https://bio.torre.co/api/bios/'+req.params.customer;
+        request(url, function (error, response) {
+            res.send(response.body)
+        }); 
+    } else {
+        res.status(404).send('Type a username');
+    }
 })
-app.get('*', function(req, res){
-    console.log(res)
-    res.header("Access-Control-Allow-Origin", "*");
-    res.status(404).send('what???');
-  });
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
