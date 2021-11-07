@@ -3,7 +3,10 @@ const app = express()
 const port = 3000
 var request = require('request');
 app.use(express.json());
-app.get('/:customer', (req, res) => {
+app.get('/', (req, res) => {
+    res.send('API TEST TORRE')
+})
+app.get('get_user/:customer', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     var url = 'https://bio.torre.co/api/bios/'+req.params.customer;
     request(url, function (error, response) {
