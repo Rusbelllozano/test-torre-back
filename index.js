@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 app.get('/get_user/:customer', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     if (req.params.customer) {
-        var url = 'https://bio.torre.co/api/bios/' + req.params.customer;
+        var url = process.env.URL_API_TORRE + req.params.customer;
         request(url, function (error, response) {
             res.send(response.body)
         });
